@@ -1,0 +1,156 @@
+{
+  "data": {
+    "source": "CMS Medicare Part D Opioid Prescriber Summary File",
+    "main_year": 2016,
+    "prescribers_analysed_2016": 804678,
+    "suppression_note": "opioid counts of 1-10 are suppressed by CMS"
+  },
+  "concentration": {
+    "top_1pct_share": 24.7,
+    "top_5pct_share": 53.0,
+    "top_10pct_share": 69.0,
+    "top_20pct_share": 84.3
+  },
+  "trend": {
+    "2013": 6.45,
+    "2014": 6.39,
+    "2015": 6.17,
+    "2016": 5.98
+  },
+  "top_specialties_by_volume": {
+    "Family Practice": {
+      "share_of_opioid_claims_pct": 25.5,
+      "median_rate_pct": 4.0
+    },
+    "Internal Medicine": {
+      "share_of_opioid_claims_pct": 21.4,
+      "median_rate_pct": 3.2
+    },
+    "Nurse Practitioner": {
+      "share_of_opioid_claims_pct": 9.9,
+      "median_rate_pct": 1.0
+    },
+    "Physician Assistant": {
+      "share_of_opioid_claims_pct": 7.0,
+      "median_rate_pct": 6.2
+    },
+    "Physical Medicine and Rehabilitation": {
+      "share_of_opioid_claims_pct": 4.1,
+      "median_rate_pct": 30.0
+    },
+    "Orthopedic Surgery": {
+      "share_of_opioid_claims_pct": 3.9,
+      "median_rate_pct": 47.4
+    }
+  },
+  "tests": {
+    "specialty_kruskal": {
+      "p_value": 0.0,
+      "epsilon_squared": 0.268
+    },
+    "np_vs_pcp_mannwhitney": {
+      "p_value": 0.0,
+      "rank_biserial_r": 0.182,
+      "median_np": 1.03,
+      "median_pcp": 3.6,
+      "median_diff_ci95": [
+        -2.99,
+        -2.22
+      ]
+    },
+    "region_chisquare": {
+      "p_value": 1.3691258089474628e-179,
+      "cramers_v": 0.032,
+      "high_prescriber_threshold_pct": 36.7,
+      "pct_high_by_region": {
+        "Midwest": 10.8,
+        "South": 10.5,
+        "West": 10.2,
+        "Northeast": 8.2
+      }
+    },
+    "paired_2013_2016_wilcoxon": {
+      "p_value": 0.0,
+      "doctors_matched": 525852,
+      "mean_change_pts": -1.4,
+      "ci95": [
+        -1.43,
+        -1.38
+      ],
+      "pct_doctors_reduced": 50.0
+    }
+  },
+  "regression": {
+    "r_squared": 0.23,
+    "n": 804678,
+    "max_vif": 3.06,
+    "specialty_effects_vs_family_practice_pts": {
+      "Internal Medicine": -0.7,
+      "Nurse Practitioner": 1.7,
+      "Other": 2.8,
+      "Rheumatology": 4.3,
+      "Dentist": 9.2,
+      "Physician Assistant": 11.1,
+      "Emergency Medicine": 15.2,
+      "Anesthesiology": 22.8,
+      "Physical Medicine and Rehabilitation": 26.4,
+      "Orthopedic Surgery": 41.0,
+      "Pain Management": 45.5,
+      "Interventional Pain Management": 47.6
+    }
+  },
+  "optimization": {
+    "state": "TN",
+    "budget_usd": 90000,
+    "capacity": {
+      "East": 120,
+      "Middle": 120,
+      "West": 80
+    },
+    "plans": [
+      {
+        "plan": "Rule A: highest rate",
+        "visits": 221,
+        "spend_usd": 89850,
+        "expected_claims_avoided": 13714,
+        "pct_of_state_opioid_claims": 0.48,
+        "west_share_of_visits": 0.195,
+        "primary_care_share": 0.407
+      },
+      {
+        "plan": "Rule B: highest volume",
+        "visits": 263,
+        "spend_usd": 89850,
+        "expected_claims_avoided": 78087,
+        "pct_of_state_opioid_claims": 2.72,
+        "west_share_of_visits": 0.16,
+        "primary_care_share": 0.84
+      },
+      {
+        "plan": "Optimised (PuLP)",
+        "visits": 299,
+        "spend_usd": 90000,
+        "expected_claims_avoided": 86211,
+        "pct_of_state_opioid_claims": 3.01,
+        "west_share_of_visits": 0.201,
+        "primary_care_share": 0.993
+      },
+      {
+        "plan": "Optimised + equity rule",
+        "visits": 299,
+        "spend_usd": 90000,
+        "expected_claims_avoided": 85972,
+        "pct_of_state_opioid_claims": 3.0,
+        "west_share_of_visits": 0.251,
+        "primary_care_share": 0.993
+      }
+    ],
+    "uplift_optimised_vs_volume_rule_pct": 10.4,
+    "optimised_vs_rate_rule_multiple": 6.3,
+    "price_of_equity_pct": 0.3,
+    "sensitivity_uplift_range_pct": [
+      4.3,
+      13.4
+    ]
+  }
+}
